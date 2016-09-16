@@ -1,9 +1,11 @@
 # CTRbot
 some bot for shilling or whatever
 
-use: Init the trainer file by running the build `./CTRbot` or the go command `go run main.go`
-
-load the trainer file with cancer from the 4chan API like dis `./CTRbot -scrape "http(s)://a.4cdn.org/board/pagenumber.json"`
+use: Init and load the trainer file with cancer from the 4chan API like dis `./CTRbot -scrape "http(s)://a.4cdn.org/board/pagenumber.json"`
 replace board and pagenumber with you know
 
 then you're all set to run it normally `./CTRbot` and it will generate some keks
+
+The more you train it, the better it will be
+
+Oh and you can tweak some shit with the algorithm, just bring up the help menu `./CTRbot --help` and you can get more options
