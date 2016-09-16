@@ -3,6 +3,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"html"
@@ -43,7 +44,7 @@ type _4chanAPI struct {
 	} `json:"threads"`
 }
 
-func Scrape(url *string, file *os.File) {
+func Scrape(url *string, file *bytes.Buffer) {
 	w := bufio.NewWriter(file)
 
 	response, err := http.Get(*url)
@@ -56,8 +57,6 @@ func Scrape(url *string, file *os.File) {
 	b, _ := ioutil.ReadAll(response.Body)
 	// b is a char array ... ahem ... I mean slice
 	// fucking naming conventions
-
-	defer response.Body.Close()
 
 	var chanfour _4chanAPI
 	if err := json.Unmarshal(b, &chanfour); err != nil {
@@ -81,5 +80,4 @@ func Scrape(url *string, file *os.File) {
 		}
 	}
 	fmt.Println("Cancer successfully loaded!")
-	file.Sync()
 }
