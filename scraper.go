@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"regexp"
 )
 
 type _4chanAPI struct {
@@ -65,10 +66,14 @@ func Scrape(url *string, file *os.File) {
 		os.Exit(1)
 	}
 
+	rp := regexp.MustCompile(`(>>\d\d\d\d\d\d\d\d)`)
+
 	for i := range chanfour.Threads {
 		for j := range chanfour.Threads[i].Posts {
 			if chanfour.Threads[i].Posts[j].Sticky == 0 {
-				_, err := w.WriteString(html.UnescapeString(StripTags(chanfour.Threads[i].Posts[j].Com)))
+				formatted := html.UnescapeString(StripTags(chanfour.Threads[i].Posts[j].Com))
+				kek := rp.ReplaceAllString(formatted, "")
+				_, err := w.WriteString(kek + " ")
 				if err != nil {
 					fmt.Println(err)
 				}
