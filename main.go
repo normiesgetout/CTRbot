@@ -24,7 +24,7 @@ func main() {
 		} else {
 			fmt.Println("trainer.txt created in current directory")
 		}
-		os.Exit(1)
+		//os.Exit(1)
 	}
 
 	file, err := os.OpenFile(*importFile, os.O_RDWR|os.O_APPEND|os.O_CREATE, 0644)
